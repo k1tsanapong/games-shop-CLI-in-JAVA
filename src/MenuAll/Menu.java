@@ -21,7 +21,7 @@ public class Menu {
     {
 
         for (int i = 0; i < menuList.size(); i++)  {
-            System.out.println( (i+1) + "." + menuList.get(i));
+            System.out.println( (i+1) + "." + menuList.get(i).getName());
         }
     }
 
@@ -75,7 +75,7 @@ public class Menu {
 
     public String toString() {
 
-        return name;
+        return "kimerza";
     }
 
 }
