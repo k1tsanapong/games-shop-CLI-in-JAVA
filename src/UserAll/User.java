@@ -20,7 +20,11 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+
+        if (!name.equals("kim")){
+
+            this.name = name;
+        }
     }
 
     public String getPassword() {
@@ -37,5 +41,15 @@ public class User {
 
     public static void setGames(ArrayList<Game> games) {
         User.games = games;
+    }
+
+    public User()
+    {
+
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 }

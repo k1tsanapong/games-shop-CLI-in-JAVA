@@ -19,9 +19,11 @@ public class Main {
         menu.showName();
         menu.showMenu();
 
-        library.showName();
-        library.showGame();
-        library.playTest();
+        signUp.newUser();
+
+//        library.showName();
+//        library.showGame();
+//        library.playTest();
 
 //        shop.showName();
 //        shop.showGame();
