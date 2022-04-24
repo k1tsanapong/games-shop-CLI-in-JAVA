@@ -10,16 +10,15 @@ public class Main {
 
         menu.addMenuList(logIn);
 
-        menu.showName();
-        menu.showMenu();
+//        menu.showName();
+//        menu.showMenu();
 
 //        library.showName();
 //        library.showGame();
 //        library.playTest();
 
-//        shop.showName();
-//        shop.showGame();
-
+        shop.showName();
+        shop.showGame();
 
     }
 }

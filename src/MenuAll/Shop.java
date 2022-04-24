@@ -67,8 +67,12 @@ public class Shop extends Menu {
 
         for (int i = 0; i < games.size(); i++)
         {
-            System.out.print( (i+1) + ".");
-            System.out.println(games.get(i).getName());
+
+            String prefix = (i+1) + "." + games.get(i).getName();
+            int suffix = games.get(i).getPrice();
+
+            System.out.printf("%-20s%5s%5s%n", prefix, suffix,"Baht");
+
         }
 
     }
