@@ -21,10 +21,7 @@ public class User {
 
     public void setName(String name) {
 
-        if (!name.equals("kim")){
-
-            this.name = name;
-        }
+        this.name = name;
     }
 
     public String getPassword() {

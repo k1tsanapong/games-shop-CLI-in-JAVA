@@ -9,17 +9,15 @@ public class SignUp extends Menu{
         super(name);
     }
 
-    public void newUser() {
+    public void newUserName() {
 
         User newUser = new User();
 
-        do
-        {
-            String userName = keyboard.next();
+        int again = 0;
 
-            newUser.setName(userName);
 
-        }while (Objects.equals(newUser.getName(), ""));
+        System.out.print("User Name : ");
+        String userName = keyboard.next();
 
     }
 

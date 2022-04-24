@@ -30,7 +30,7 @@ public class Library extends Menu{
         }
     }
 
-    public void playTest() throws IOException {
+    public void playTest() {
         int selection = selection();
 
         games[selection - 1].play();
