@@ -10,12 +10,4 @@ public class LogIn extends Menu {
         super(name);
     }
 
-    public void start() {
-
-        showName();
-        showMenu();
-        
-    }
-
-
 }

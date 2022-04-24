@@ -2,6 +2,8 @@ import MenuAll.*;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.Objects;
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -22,30 +24,26 @@ public class Main {
         {
             menuList.getFirst().start();
 
-            int selection =  menuList.getFirst().selection();;
+            int selection =  menuList.getFirst().selection();
 
             if (selection == -1)
             {
+
                 menuList.removeFirst();
             }
 
+//            if(Objects.equals(menuList.getFirst().getName(),"Return"))
+//            {
+//                menuList.removeFirst();
+//            }
+
             else
             {
-                System.out.println("fads :"+selection);
                 menuList.addFirst(menuList.getFirst().getMenuList().get(selection));
             }
 
 
         }
-//        LogIn logIn = new LogIn("Log In");
-//        SignUp signUp = new SignUp("Sign Up");
-//
-//        menu.addMenuList(logIn);
-//        menu.addMenuList(signUp);
-//
-//        menu.showName();
-//        menu.showMenu();
-//        menu.selection();
 
 
 
@@ -62,8 +60,6 @@ public class Main {
 
 
 
-
-//
 
 //        Shop shop = new Shop("Shop");
 //        Library library = new Library("Library");

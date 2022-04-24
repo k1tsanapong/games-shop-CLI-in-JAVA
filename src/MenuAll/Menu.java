@@ -13,14 +13,24 @@ public class Menu {
 
     private String name;
 
+    private List<Menu> menuList = new ArrayList<>();
+
     public List<Menu> getMenuList() {
         return menuList;
     }
 
-    private List<Menu> menuList = new ArrayList<>();
+    public String getName() {
+        return name;
+    }
 
     public Menu(String name) {
         this.name = name;
+    }
+
+    public void showName()
+    {
+        System.out.println("--- " + name + " ---");
+
     }
 
     public void showMenu()
@@ -32,16 +42,10 @@ public class Menu {
         System.out.println("0.Return");
     }
 
-    public void showName()
-    {
-        System.out.println("--- " + name + " ---");
-
+    public void addMenuList (Menu menu) {
+        menuList.add(menu);
     }
 
-
-    public String getName() {
-        return name;
-    }
 
     public int selection() {
 
@@ -123,10 +127,6 @@ public class Menu {
         return select;
 
 
-    }
-
-    public void addMenuList (Menu menu) {
-        menuList.add(menu);
     }
 
 
