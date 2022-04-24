@@ -13,6 +13,10 @@ public class Menu {
 
     private String name;
 
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
     private List<Menu> menuList = new ArrayList<>();
 
     public Menu(String name) {
@@ -94,13 +98,13 @@ public class Menu {
 
             // TODO: check index value and return proper exception
 
-            if (select == -1)
-            {
-                throw new SelectToReturn();
-            }
+//            if (select == -1)
+//            {
+//                throw new SelectToReturn();
+//            }
 
 
-            else if (select < -1) {
+            if (select < -1) {
                 throw new IndexTooLowException();
             }
 
@@ -133,27 +137,11 @@ public class Menu {
     }
 
 
-    public Menu start() {
-
-        LogIn logIn = new LogIn("Log In");
-        SignUp signUp = new SignUp("Sign Up");
-        addMenuList(logIn);
-        addMenuList(signUp);
+    public void start() {
 
         showName();
         showMenu();
 
-        int selection = selection();
-
-        System.out.println(selection);
-
-        if (selection == -1)
-        {
-
-            return new Menu("Return");
-        }
-
-        return menuList.get(selection);
 
     }
 

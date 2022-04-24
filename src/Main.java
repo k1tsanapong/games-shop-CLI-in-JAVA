@@ -10,18 +10,31 @@ public class Main {
 
         Menu menu = new Menu("Menu Main");
 
+        LogIn logIn = new LogIn("Log In");
+        SignUp signUp = new SignUp("Sign Up");
+        menu.addMenuList(logIn);
+        menu.addMenuList(signUp);
+
+
         menuList.addFirst(menu);
 
         while (menuList.isEmpty() == false)
         {
+            menuList.getFirst().start();
 
-            menuList.addFirst(menuList.getFirst().start());
+            int selection =  menuList.getFirst().selection();;
 
-            if (Objects.equals(menuList.getFirst().getName(),"Return"))
+            if (selection == -1)
             {
                 menuList.removeFirst();
-                System.out.println("yest");
             }
+
+            else
+            {
+                System.out.println("fads :"+selection);
+                menuList.addFirst(menuList.getFirst().getMenuList().get(selection));
+            }
+
 
         }
 //        LogIn logIn = new LogIn("Log In");
