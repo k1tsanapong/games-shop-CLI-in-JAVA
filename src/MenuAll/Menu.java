@@ -1,5 +1,7 @@
 package MenuAll;
 
+import ExceptionAll.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,19 +49,76 @@ public class Menu {
             try
             {
                 System.out.print("Input : ");
-                selection = Integer.parseInt(keyboard.nextLine());
+                String selectionStr = keyboard.nextLine();
+
+                selection = getInput(selectionStr);
 
                 again = false;
 
             }
             catch (NumberFormatException e)
             {
-                System.out.println("Error");
+                System.out.println("Error : Only Number");
+            }
+
+            catch (SelectToReturn e)
+            {
+                return 0;
+            }
+
+            catch(IndexTooLowException e)
+            {
+                //System.out.println(">> "+index);
+                System.out.println("Error : Index too low");
+            }
+
+            catch(IndexTooHighException e)
+            {
+                //System.out.println(">> "+index);
+                System.out.println("Error : Index too high");
             }
 
         }
 
         return selection;
+    }
+
+
+    public int getInput(String selectionStr) throws IndexTooLowException, IndexTooHighException, SelectToReturn
+    {
+        int select;
+
+        try {
+            select = Integer.parseInt(selectionStr);
+            select = select - 1;
+
+            // TODO: check index value and return proper exception
+
+            if (select == -1)
+            {
+                throw new SelectToReturn();
+            }
+
+
+            else if (select < -1) {
+                throw new IndexTooLowException();
+            }
+
+            else if (select > menuList.size())
+            {
+                throw new IndexTooHighException();
+            }
+
+
+        } catch (NumberFormatException e) {
+
+            // TODO: remove below return, throw the proper exception
+            throw new NumberFormatException();
+        }
+
+        return select;
+
+
     }
 
     public void addMenuList (Menu menu) {
@@ -70,11 +129,11 @@ public class Menu {
 
     public String toString() {
 
-        return "kimerza";
+        return getName();
     }
 
 
-    public void start() {
+    public Menu start() {
 
         LogIn logIn = new LogIn("Log In");
         SignUp signUp = new SignUp("Sign Up");
@@ -83,6 +142,18 @@ public class Menu {
 
         showName();
         showMenu();
+
+        int selection = selection();
+
+        System.out.println(selection);
+
+        if (selection == -1)
+        {
+
+            return new Menu("Return");
+        }
+
+        return menuList.get(selection);
 
     }
 
