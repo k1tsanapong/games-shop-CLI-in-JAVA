@@ -15,18 +15,6 @@ public class Shop extends Menu {
 
     private static ArrayList<Game> games = loadGames("src/GameAll/games.txt");
 
-//    public static Game[] genGame()
-//    {
-//
-//        Game[] games = new Game[4];
-//        games[0] = new Game("GTA X",999);
-//        games[1] = new Game("Cyberpunk 1999",1299);
-//        games[2] = new Game("Old World",899);
-//        games[3] = new Game("Mario Car",299);
-//
-//        return games;
-//    }
-
     public static ArrayList<Game> loadGames(String fileName)
     {
         ArrayList<Game> loadGames = new ArrayList<>();
@@ -76,14 +64,5 @@ public class Shop extends Menu {
         }
 
     }
-
-    public void playTest()
-    {
-        int selection = selection();
-
-        games.get(selection-1).play();
-    }
-
-
 
 }

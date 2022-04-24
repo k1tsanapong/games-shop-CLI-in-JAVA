@@ -2,6 +2,8 @@ package MenuAll;
 
 import GameAll.*;
 
+import java.io.IOException;
+
 public class Library extends Menu{
     public Library(String name) {
         super(name);
@@ -28,8 +30,7 @@ public class Library extends Menu{
         }
     }
 
-    public void playTest()
-    {
+    public void playTest() throws IOException {
         int selection = selection();
 
         games[selection - 1].play();
