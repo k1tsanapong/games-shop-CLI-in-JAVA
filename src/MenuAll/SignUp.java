@@ -14,6 +14,67 @@ public class SignUp extends Menu{
         static User newUser = new User();
 
         static Deque<User> loadUser = loadUser();
+
+    public static void writeUser()
+    {
+        try(BufferedWriter bW = new BufferedWriter(new FileWriter(new File("src/UserAll/user.txt"))))
+
+        {
+            for (User loopUser: loadUser)
+            {
+                bW.write(loopUser.getName());
+                bW.write(',');
+                bW.write(loopUser.getPassword());
+                bW.newLine();
+            }
+
+            bW.write(newUser.getName());
+            bW.write(',');
+            bW.write(newUser.getPassword());
+            bW.newLine();
+
+
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error" + e.getMessage());
+        }
+    }
+
+    public static Deque<User> loadUser()
+    {
+        Deque<User> userList = new ArrayDeque<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/UserAll/user.txt"))))
+        {
+            String[] fields = null;
+            String line = null;
+
+            for (int i = 0 ; ((line = reader.readLine()) != null); i++) {
+                fields = line.split(",");
+
+                User user = new User();
+
+                user.setName(fields[0]);
+                user.setPassword(fields[1]);
+
+                userList.addLast(user);
+
+            }
+
+    }
+        catch (IOException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+
+        return userList;
+
+    }
+
+
     public int start() {
 
         showName();
@@ -77,70 +138,5 @@ public class SignUp extends Menu{
 
         return -1;
 
-
-
-
-
     }
-
-
-    public static void writeUser()
-    {
-        try(BufferedWriter bW = new BufferedWriter(new FileWriter(new File("src/UserAll/user.txt"))))
-
-        {
-            for (User loopUser: loadUser)
-            {
-                bW.write(loopUser.getName());
-                bW.write(',');
-                bW.write(loopUser.getPassword());
-                bW.newLine();
-            }
-
-            bW.write(newUser.getName());
-            bW.write(',');
-            bW.write(newUser.getPassword());
-            bW.newLine();
-
-
-
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error" + e.getMessage());
-        }
-    }
-
-    public static Deque<User> loadUser()
-    {
-        Deque<User> userList = new ArrayDeque<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/UserAll/user.txt"))))
-        {
-            String[] fields = null;
-            String line = null;
-
-            for (int i = 0 ; ((line = reader.readLine()) != null); i++) {
-                fields = line.split(",");
-
-                User user = new User();
-
-                user.setName(fields[0]);
-                user.setPassword(fields[1]);
-
-                userList.addLast(user);
-
-            }
-
-    }
-        catch (IOException e)
-        {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-
-        return userList;
-
-    }
-
 }

@@ -52,21 +52,40 @@ public class Menu {
         int selection = -1;
         boolean again = true;
 
+
         while(again)
         {
+            String selectionStr = "";
+
             try
             {
+
+
+//                if (selectionStr != null)
+//                {
+//                    System.out.print("Input : ");
+//
+//                }
+
                 System.out.print("Input : ");
-                String selectionStr = keyboard.nextLine();
+                selectionStr = keyboard.nextLine();
+
+
+
 
                 selection = getInput(selectionStr);
 
                 again = false;
 
             }
+
             catch (NumberFormatException e)
             {
+//                if (selectionStr.isEmpty() == false)
+//                {
+//                }
                 System.out.println("Error : Only Number");
+
             }
 
             catch (SelectToReturn e)
@@ -145,5 +164,6 @@ public class Menu {
         return selection();
 
     }
+
 
 }

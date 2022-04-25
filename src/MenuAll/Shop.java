@@ -29,6 +29,8 @@ public class Shop extends Menu {
 
         }
 
+        System.out.println("0.Return");
+
     }
 
     private static List<Game> loadGames()
@@ -63,6 +65,18 @@ public class Shop extends Menu {
 
 
         return loadGames;
+
+    }
+
+    @Override
+    public int start() {
+
+        showName();
+        showGame();
+
+        keyboard.hasNext();
+
+        return -1;
 
     }
 }

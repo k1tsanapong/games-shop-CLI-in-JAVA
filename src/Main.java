@@ -19,6 +19,12 @@ public class Main {
         menu.addMenuList(signUp);
         menuList.addFirst(menu);
 
+        Shop shop = new Shop("Shop");
+        Library library = new Library("Library");
+
+        logIn.addMenuList(shop);
+        logIn.addMenuList(library);
+
 
 
         while (menuList.isEmpty() == false)
@@ -35,6 +41,7 @@ public class Main {
 //            {
 //                menuList.removeFirst();
 //            }
+
 
             else
             {
@@ -60,13 +67,10 @@ public class Main {
 
 
 
-//        Shop shop = new Shop("Shop");
-//        Library library = new Library("Library");
 
-//        menu.addMenuList(logIn);
-//        menu.addMenuList(signUp);
 
-//        menu.start();
+
+
 
 //        menu.addMenuList(shop);
 //        menu.addMenuList(library);
