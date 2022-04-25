@@ -14,11 +14,12 @@ public class Main {
 
         LogIn logIn = new LogIn("Log In");
         SignUp signUp = new SignUp("Sign Up");
+
         menu.addMenuList(logIn);
         menu.addMenuList(signUp);
-
-
         menuList.addFirst(menu);
+
+
 
         while (menuList.isEmpty() == false)
         {
