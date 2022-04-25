@@ -137,11 +137,12 @@ public class Menu {
     }
 
 
-    public void start() {
+    public int start() {
 
         showName();
         showMenu();
 
+        return selection();
 
     }
 

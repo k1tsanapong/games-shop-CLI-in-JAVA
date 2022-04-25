@@ -19,7 +19,8 @@ public class Game {
         this.price = price;
     }
 
-    public void play() {
+    public void play()
+    {
 
         System.out.println(this.name);
 

@@ -22,13 +22,11 @@ public class Main {
 
         while (menuList.isEmpty() == false)
         {
-            menuList.getFirst().start();
 
-            int selection =  menuList.getFirst().selection();
+            int selection = menuList.getFirst().start();
 
             if (selection == -1)
             {
-
                 menuList.removeFirst();
             }
 

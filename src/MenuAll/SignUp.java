@@ -9,15 +9,50 @@ public class SignUp extends Menu{
         super(name);
     }
 
-    public void newUserName() {
+    public int start() {
+
+        showName();
+        showMenu();
 
         User newUser = new User();
 
-        int again = 0;
-
 
         System.out.print("User Name : ");
-        String userName = keyboard.next();
+        newUser.setName(keyboard.next());
+
+        if (newUser.getName().equals("0"))
+        {
+            return -1;
+        }
+
+        boolean again = false;
+
+        do
+        {
+            if (again == true)
+            {
+                System.out.println("Not match");
+            }
+
+            if (newUser.getPassword().equals("0"))
+            {
+                return -1;
+            }
+
+            System.out.print("Password : ");
+            newUser.setPassword(keyboard.next());
+
+            again = true;
+
+            System.out.print("Confirm Password : ");
+
+        } while ( !newUser.getPassword().equals(keyboard.next()) );
+
+        return -1;
+
+
+
+
 
     }
 

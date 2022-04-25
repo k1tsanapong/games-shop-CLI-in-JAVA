@@ -14,7 +14,7 @@ public class Shop extends Menu {
         super(name);
     }
 
-    private static List<Game> games = loadGames("src/GameAll/games.txt");
+    private static List<Game> games = loadGames();
 
     public void showGame()
     {
@@ -31,11 +31,11 @@ public class Shop extends Menu {
 
     }
 
-    public static List<Game> loadGames(String fileName)
+    private static List<Game> loadGames()
     {
         List<Game> loadGames = new ArrayList<>();
 
-        File myFile = new File(fileName);
+        File myFile = new File("src/GameAll/games.txt");
 
 
 
