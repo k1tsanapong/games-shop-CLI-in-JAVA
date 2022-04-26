@@ -56,8 +56,18 @@ public class LogIn extends Menu {
 
     public int start()
     {
-        if (pass == false)
-        {
+        if (pass == true) {
+
+            showName();
+            showMenu();
+
+
+
+            return selection();
+
+        }
+
+
             showName();
 
 
@@ -115,20 +125,14 @@ public class LogIn extends Menu {
 //
 //
 //        } while (passwordNameInput.equals("Not Match"));
-        }
+
 
         showName();
         showMenu();
 
         pass = true;
 
-        int selection = selection();
-
-        if (selection == -1) {
-            pass = false;
-        }
-
-        return selection;
+        return selection();
     }
 
 }
