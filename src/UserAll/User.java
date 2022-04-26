@@ -13,7 +13,9 @@ public class User {
     private String name = "";
     private String password = "";
 
-    private static ArrayList<Game> games = null;
+    private  ArrayList<Game> games = null;
+
+    private int selection = -1;
 
     public String getName() {
         return name;
@@ -32,18 +34,29 @@ public class User {
         this.password = password;
     }
 
-    public static ArrayList<Game> getGames() {
+    public  ArrayList<Game> getGames() {
         return games;
     }
 
-    public static void setGames(ArrayList<Game> games) {
-        User.games = games;
+    public  void addGames(Game games) {
+        this.games.add(games);
     }
+
+    public int getSelection() {
+        return selection;
+    }
+
+    public void setSelection(int selection) {
+        this.selection = selection;
+    }
+
+
 
     public User()
     {
-
+        this.name = "anonymous";
     }
+
 
     public User(String name, String password) {
         this.name = name;

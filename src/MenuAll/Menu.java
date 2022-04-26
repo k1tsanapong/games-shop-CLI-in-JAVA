@@ -1,6 +1,7 @@
 package MenuAll;
 
 import ExceptionAll.*;
+import UserAll.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ public class Menu {
 
     private String name;
 
+    private  User user = null;
+
     private List<Menu> menuList = new ArrayList<>();
 
     public List<Menu> getMenuList() {
@@ -23,8 +26,9 @@ public class Menu {
         return name;
     }
 
-    public Menu(String name) {
+    public Menu(String name, User user) {
         this.name = name;
+        this.user = user;
     }
 
     public void showName()
@@ -156,12 +160,14 @@ public class Menu {
     }
 
 
-    public int start() {
+    public User start() {
 
         showName();
         showMenu();
 
-        return selection();
+        user.setSelection(selection());
+
+        return user;
 
     }
 

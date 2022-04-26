@@ -1,4 +1,5 @@
 import MenuAll.*;
+import UserAll.User;
 
 import java.io.IOException;
 import java.util.*;
@@ -8,19 +9,21 @@ import java.util.Objects;
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        User user = new User();
+
         Deque<Menu> menuList = new ArrayDeque<>();
 
-        Menu menu = new Menu("Menu Main");
+        Menu menu = new Menu("Menu Main",user);
 
-        LogIn logIn = new LogIn("Log In");
-        SignUp signUp = new SignUp("Sign Up");
+        LogIn logIn = new LogIn("Log In",user);
+        SignUp signUp = new SignUp("Sign Up",user);
 
         menu.addMenuList(logIn);
         menu.addMenuList(signUp);
         menuList.addFirst(menu);
 
-        Shop shop = new Shop("Shop");
-        Library library = new Library("Library");
+        Shop shop = new Shop("Shop",user);
+        Library library = new Library("Library",user);
 
         logIn.addMenuList(shop);
         logIn.addMenuList(library);
@@ -30,9 +33,9 @@ public class Main {
         while (menuList.isEmpty() == false)
         {
 
-            int selection = menuList.getFirst().start();
+            user = menuList.getFirst().start();
 
-            if (selection == -1)
+            if (user.getSelection() == -1)
             {
                 menuList.removeFirst();
             }
@@ -45,7 +48,7 @@ public class Main {
 
             else
             {
-                menuList.addFirst(menuList.getFirst().getMenuList().get(selection));
+                menuList.addFirst(menuList.getFirst().getMenuList().get(user.getSelection()));
             }
 
 

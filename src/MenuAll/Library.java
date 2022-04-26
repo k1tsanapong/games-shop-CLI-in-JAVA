@@ -1,15 +1,18 @@
 package MenuAll;
 
 import GameAll.*;
+import UserAll.User;
 
 import java.io.IOException;
 
 public class Library extends Menu{
-    public Library(String name) {
-        super(name);
-    }
+
 
     private static Game[] games = genGame();
+
+    public Library(String name, User user) {
+        super(name, user);
+    }
 
     public static Game[] genGame()
     {

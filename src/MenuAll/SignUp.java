@@ -7,13 +7,14 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class SignUp extends Menu{
-    public SignUp(String name) {
-        super(name);
+
+    private static User newUser = new User();
+
+    private static Deque<User> loadUser = loadUser();
+
+    public SignUp(String name, User user) {
+        super(name, user);
     }
-
-        static User newUser = new User();
-
-        static Deque<User> loadUser = loadUser();
 
     public static void writeUser()
     {
@@ -75,7 +76,7 @@ public class SignUp extends Menu{
     }
 
 
-    public int start() {
+    public User start() {
 
         showName();
         showMenu();
@@ -89,7 +90,9 @@ public class SignUp extends Menu{
 
             if (newUser.getName().equals("0"))
             {
-                return -1;
+                newUser.setSelection(0);
+
+                return newUser;
             }
 
             for (User loopUser : loadUser)
@@ -120,7 +123,9 @@ public class SignUp extends Menu{
 
             if (newUser.getPassword().equals("0"))
             {
-                return -1;
+                newUser.setSelection(0);
+
+                return newUser;
             }
 
             System.out.print("Password : ");
@@ -136,7 +141,9 @@ public class SignUp extends Menu{
         writeUser();
         System.out.println("Sign Up Suc");
 
-        return -1;
+        newUser.setSelection(0);
+
+        return newUser;
 
     }
 }

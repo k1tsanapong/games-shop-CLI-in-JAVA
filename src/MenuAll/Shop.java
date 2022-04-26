@@ -1,6 +1,7 @@
 package MenuAll;
 
 import GameAll.*;
+import UserAll.User;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,11 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop extends Menu {
-    public Shop(String name) {
-        super(name);
-    }
+
+    private static User user = null;
 
     private static List<Game> games = loadGames();
+
+    public Shop(String name, User user) {
+        super(name, user);
+    }
 
     public void showGame()
     {
@@ -69,14 +73,14 @@ public class Shop extends Menu {
     }
 
     @Override
-    public int start() {
+    public User start() {
 
         showName();
         showGame();
 
-        keyboard.hasNext();
+        user.setSelection(selection());
 
-        return -1;
+        return user;
 
     }
 }
