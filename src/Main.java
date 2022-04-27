@@ -15,18 +15,10 @@ public class Main {
 
         Menu menu = new Menu("Menu Main");
 
-        LogIn logIn = new LogIn("Log In");
-        SignUp signUp = new SignUp("Sign Up");
 
-        menu.addMenuList(logIn);
-        menu.addMenuList(signUp);
+
         menuList.addFirst(menu);
 
-        Shop shop = new Shop("Shop");
-        Library library = new Library("Library");
-
-        logIn.addMenuList(shop);
-        logIn.addMenuList(library);
 
 
 

@@ -28,6 +28,7 @@ public class Shop extends Menu {
             String prefix = (i+1) + "." + games.get(i).getName();
             int suffix = games.get(i).getPrice();
 
+
             System.out.printf("%-20s%5s%5s%n", prefix, suffix,"Baht");
 
         }
@@ -36,7 +37,7 @@ public class Shop extends Menu {
 
     }
 
-    private static List<Game> loadGames()
+    private List<Game> loadGames()
     {
         List<Game> loadGames = new ArrayList<>();
 
@@ -55,6 +56,7 @@ public class Shop extends Menu {
                 Game game = new Game(String.valueOf(fields[0]),Integer.parseInt(fields[1]));
 
                 loadGames.add(game);
+                addMenuList(game);
 //                loadGames.set(i, game);
 
             }
@@ -75,9 +77,7 @@ public class Shop extends Menu {
     public User start(User user) {
 
         showName();
-        showGame();
-
-        System.out.println(user.getName());
+        showMenu();
 
         user.setSelection(selection());
 

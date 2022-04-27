@@ -1,6 +1,8 @@
 package GameAll;
 
-public class Game {
+import MenuAll.Menu;
+
+public class Game extends Menu {
 
     private String name = "";
     private int price = 0;
@@ -15,6 +17,7 @@ public class Game {
 
     public Game (String name, int price)
     {
+        super(name);
         this.name = name;
         this.price = price;
     }

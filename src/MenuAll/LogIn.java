@@ -11,7 +11,7 @@ import java.util.Deque;
 
 public class LogIn extends Menu {
 
-    static boolean pass = false;
+    private static boolean pass = false;
 
     static Deque<User> loadUser = loadUser();
 
@@ -56,6 +56,12 @@ public class LogIn extends Menu {
     {
 
         if (pass == false) {
+
+            Shop shop = new Shop("Shop");
+            Library library = new Library("Library");
+
+            addMenuList(shop);
+            addMenuList(library);
 
             showName();
 
@@ -117,16 +123,18 @@ public class LogIn extends Menu {
 //        } while (passwordNameInput.equals("Not Match"));
 
         }
+        pass = true;
+
 
         showName();
         showMenu();
 
-        pass = true;
 
         user.setSelection(selection());
 
-        if (user.getSelection() == 0)
+        if (user.getSelection() == -1)
         {
+            pass = false;
             return new User();
         }
 

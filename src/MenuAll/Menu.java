@@ -10,25 +10,24 @@ import java.util.Scanner;
 
 public class Menu {
 
-    Scanner keyboard = new Scanner(System.in);
-
     private String name;
 
-
+    private static boolean pass = false;
 
     private List<Menu> menuList = new ArrayList<>();
+    Scanner keyboard = new Scanner(System.in);
 
-    public List<Menu> getMenuList() {
-        return menuList;
+
+    public Menu(String name) {
+        this.name = name;
     }
+
 
     public String getName() {
         return name;
     }
 
-    public Menu(String name) {
-        this.name = name;
-    }
+
 
     public void showName()
     {
@@ -45,10 +44,10 @@ public class Menu {
         System.out.println("0.Return");
     }
 
-    public void addMenuList (Menu menu) {
-        menuList.add(menu);
-    }
+    public String toString() {
 
+        return getName();
+    }
 
     public int selection() {
 
@@ -104,7 +103,6 @@ public class Menu {
         return selection;
     }
 
-
     public int getInput(String selectionStr) throws IndexTooLowException, IndexTooHighException, SelectToReturn
     {
         int select;
@@ -133,15 +131,29 @@ public class Menu {
 
     }
 
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
 
-
-    public String toString() {
-
-        return getName();
+    public void addMenuList (Menu menu) {
+        menuList.add(menu);
     }
 
 
     public User start(User user) {
+
+        if (pass == false)
+        {
+            LogIn logIn = new LogIn("Log In");
+            SignUp signUp = new SignUp("Sign Up");
+
+            addMenuList(logIn);
+            addMenuList(signUp);
+
+        }
+        pass = true;
+
+
 
         showName();
         showMenu();
