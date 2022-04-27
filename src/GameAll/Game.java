@@ -237,15 +237,31 @@ public class Game extends LogIn {
 
     public static void writeUser()
     {
-        Deque<User> loadUser = loadUser();
+
+
+
         try(BufferedWriter bW = new BufferedWriter(new FileWriter(new File("src/UserAll/user.txt"))))
 
         {
-            for (User loopUser: loadUser)
+            for (User loopUser: loadUsers)
             {
                 bW.write(loopUser.getName());
                 bW.write(',');
                 bW.write(loopUser.getPassword());
+                bW.write(',');
+                bW.write(String.valueOf(loopUser.getMoney()));
+
+                if (loopUser.getGames().isEmpty() == false)
+                {
+
+                    for (int j = 0; j < loopUser.getGames().size() ; j++)
+                    {
+                        bW.write(',');
+                        bW.write(loopUser.getGames().get(j).getName());
+
+                    }
+                }
+
                 bW.newLine();
             }
 

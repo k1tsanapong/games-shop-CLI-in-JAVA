@@ -15,7 +15,7 @@ public class LogIn extends Menu {
 
     private static boolean pass = false;
 
-    static Deque<User> loadUser = loadUser();
+    public static Deque<User> loadUsers = loadUser();
 
     public LogIn(String name) {
         super(name);
@@ -94,7 +94,7 @@ public class LogIn extends Menu {
                     return user;
                 }
 
-                for (User loopUser : loadUser) {
+                for (User loopUser : loadUsers) {
                     if (user.getName().equals(loopUser.getName())) {
                         user = loopUser;
                         userNameInput = "Found";
