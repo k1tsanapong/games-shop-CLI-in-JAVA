@@ -99,7 +99,9 @@ public class Shop extends Menu {
             return user;
         }
 
-        System.out.println(games.get(user.getSelection()).getPrice());
+//        System.out.println(games.get(user.getSelection()).getPrice());
+
+
         return user;
 
 

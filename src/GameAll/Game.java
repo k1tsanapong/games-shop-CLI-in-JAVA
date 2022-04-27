@@ -3,12 +3,19 @@ package GameAll;
 import ExceptionAll.IndexTooHighException;
 import ExceptionAll.IndexTooLowException;
 import ExceptionAll.SelectToReturn;
+import MenuAll.LogIn;
 import MenuAll.Menu;
 import UserAll.User;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Deque;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Game extends Menu {
+public class Game extends LogIn {
 
     private String name = "";
     private int price = 0;
@@ -120,14 +127,27 @@ public class Game extends Menu {
     }
 
 
-    @Override
-    public void showName() {
-
-    }
 
     @Override
     public void showMenu() {
 
+
+
+    }
+
+    public boolean doesUserHas(User user)
+    {
+
+        for (Game game : user.getGames())
+        {
+            if (getName().equals(game.getName()))
+            {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 
@@ -136,13 +156,104 @@ public class Game extends Menu {
     public User start(User user) {
 
         showName();
-        showMenu();
 
-        System.out.println("Do you want to buy?");
+        if (doesUserHas(user))
+        {
+            System.out.println("lol you have it");
+            user.setSelection(-1);
+            return user;
 
-        user.setSelection(selection());
+        }
 
+        System.out.println("Would you like to buy " + getName() + "for " + getPrice() +" baht?");
+        System.out.println("1.Yes   2.No");
+
+        String inPutBuy = keyboard.nextLine();
+
+
+        if (Objects.equals(inPutBuy, "1"))
+        {
+            if (user.getMoney()-getPrice() < 0)
+            {
+                System.out.println("You don't have enough money.");
+                user.setSelection(-1);
+                return user;
+            }
+
+            System.out.println("You have purchased " + getName()
+                    + "\t Your remaining balance : " + ( user.getMoney()-getPrice() ) );
+
+            System.out.println("Confirm purchase?");
+
+            inPutBuy = keyboard.nextLine();
+
+            if (Objects.equals(inPutBuy, "1"))
+            {
+                user.setMoney(user.getMoney()-getPrice());
+                user.addGames(new Game(getName()));
+                writeUser();
+            }
+
+            else if (Objects.equals(inPutBuy, "2"))
+            {
+            System.out.println("Purchase Failed.");
+
+            user.setSelection(-1);
+            return user;
+            }
+
+            else
+            {
+            System.out.println("Select only 1-2");
+            user.setSelection(-1);
+            return user;
+            }
+
+
+
+        }
+
+        else if (Objects.equals(inPutBuy, "2"))
+        {
+            System.out.println("Purchase Failed.");
+
+            user.setSelection(-1);
+            return user;
+        }
+
+        else {
+
+                System.out.println("Select only 1-2");
+                user.setSelection(-1);
+                return user;
+
+        }
+
+        user.setSelection(-1);
         return user;
+
+    }
+
+
+    public static void writeUser()
+    {
+        Deque<User> loadUser = loadUser();
+        try(BufferedWriter bW = new BufferedWriter(new FileWriter(new File("src/UserAll/user.txt"))))
+
+        {
+            for (User loopUser: loadUser)
+            {
+                bW.write(loopUser.getName());
+                bW.write(',');
+                bW.write(loopUser.getPassword());
+                bW.newLine();
+            }
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error" + e.getMessage());
+        }
 
     }
 

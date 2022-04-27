@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Objects;
 
 public class LogIn extends Menu {
 
@@ -88,8 +89,8 @@ public class LogIn extends Menu {
                 System.out.print("User Name : ");
                 user.setName(keyboard.nextLine());
 
-                if (userNameInput.equals("0")) {
-                    user.setSelection(0);
+                if ( Objects.equals(user.getName(), "0" )) {
+                    user.setSelection(-1);
                     return user;
                 }
 
