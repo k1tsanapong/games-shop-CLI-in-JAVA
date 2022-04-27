@@ -12,12 +12,11 @@ import java.util.List;
 
 public class Shop extends Menu {
 
-    private static User user = null;
 
-    private static List<Game> games = loadGames();
+    private  List<Game> games = loadGames();
 
-    public Shop(String name, User user) {
-        super(name, user);
+    public Shop(String name) {
+        super(name);
     }
 
     public void showGame()
@@ -73,12 +72,16 @@ public class Shop extends Menu {
     }
 
     @Override
-    public User start() {
+    public User start(User user) {
 
         showName();
         showGame();
 
+        System.out.println(user.getName());
+
         user.setSelection(selection());
+
+        System.out.println(user.getSelection());
 
         return user;
 

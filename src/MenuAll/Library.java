@@ -3,15 +3,13 @@ package MenuAll;
 import GameAll.*;
 import UserAll.User;
 
-import java.io.IOException;
-
 public class Library extends Menu{
 
 
     private static Game[] games = genGame();
 
-    public Library(String name, User user) {
-        super(name, user);
+    public Library(String name) {
+        super(name);
     }
 
     public static Game[] genGame()
@@ -37,6 +35,17 @@ public class Library extends Menu{
         int selection = selection();
 
         games[selection - 1].play();
+    }
+
+    public User start(User user) {
+
+        showName();
+        showMenu();
+
+        user.setSelection(selection());
+
+        return user;
+
     }
 
 

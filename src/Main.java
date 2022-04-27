@@ -13,17 +13,17 @@ public class Main {
 
         Deque<Menu> menuList = new ArrayDeque<>();
 
-        Menu menu = new Menu("Menu Main",user);
+        Menu menu = new Menu("Menu Main");
 
-        LogIn logIn = new LogIn("Log In",user);
-        SignUp signUp = new SignUp("Sign Up",user);
+        LogIn logIn = new LogIn("Log In");
+        SignUp signUp = new SignUp("Sign Up");
 
         menu.addMenuList(logIn);
         menu.addMenuList(signUp);
         menuList.addFirst(menu);
 
-        Shop shop = new Shop("Shop",user);
-        Library library = new Library("Library",user);
+        Shop shop = new Shop("Shop");
+        Library library = new Library("Library");
 
         logIn.addMenuList(shop);
         logIn.addMenuList(library);
@@ -33,24 +33,18 @@ public class Main {
         while (menuList.isEmpty() == false)
         {
 
-            user = menuList.getFirst().start();
+            user = menuList.getFirst().start(user);
 
             if (user.getSelection() == -1)
             {
                 menuList.removeFirst();
             }
 
-//            if(Objects.equals(menuList.getFirst().getName(),"Return"))
-//            {
-//                menuList.removeFirst();
-//            }
-
 
             else
             {
                 menuList.addFirst(menuList.getFirst().getMenuList().get(user.getSelection()));
             }
-
 
         }
 

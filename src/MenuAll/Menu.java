@@ -14,7 +14,7 @@ public class Menu {
 
     private String name;
 
-    private  User user = null;
+
 
     private List<Menu> menuList = new ArrayList<>();
 
@@ -26,9 +26,8 @@ public class Menu {
         return name;
     }
 
-    public Menu(String name, User user) {
+    public Menu(String name) {
         this.name = name;
-        this.user = user;
     }
 
     public void showName()
@@ -65,12 +64,6 @@ public class Menu {
             {
 
 
-//                if (selectionStr != null)
-//                {
-//                    System.out.print("Input : ");
-//
-//                }
-
                 System.out.print("Input : ");
                 selectionStr = keyboard.nextLine();
 
@@ -85,9 +78,7 @@ public class Menu {
 
             catch (NumberFormatException e)
             {
-//                if (selectionStr.isEmpty() == false)
-//                {
-//                }
+
                 System.out.println("Error : Only Number");
 
             }
@@ -99,7 +90,6 @@ public class Menu {
 
             catch(IndexTooLowException e)
             {
-                //System.out.println(">> "+index);
                 System.out.println("Error : Index too low");
             }
 
@@ -123,19 +113,11 @@ public class Menu {
             select = Integer.parseInt(selectionStr);
             select = select - 1;
 
-            // TODO: check index value and return proper exception
-
-//            if (select == -1)
-//            {
-//                throw new SelectToReturn();
-//            }
-
-
             if (select < -1) {
                 throw new IndexTooLowException();
             }
 
-            else if (select > menuList.size())
+            else if (select > menuList.size()-1)
             {
                 throw new IndexTooHighException();
             }
@@ -143,7 +125,6 @@ public class Menu {
 
         } catch (NumberFormatException e) {
 
-            // TODO: remove below return, throw the proper exception
             throw new NumberFormatException();
         }
 
@@ -160,7 +141,7 @@ public class Menu {
     }
 
 
-    public User start() {
+    public User start(User user) {
 
         showName();
         showMenu();

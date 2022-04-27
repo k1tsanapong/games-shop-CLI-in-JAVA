@@ -12,8 +12,8 @@ public class SignUp extends Menu{
 
     private static Deque<User> loadUser = loadUser();
 
-    public SignUp(String name, User user) {
-        super(name, user);
+    public SignUp(String name) {
+        super(name);
     }
 
     public static void writeUser()
