@@ -1,5 +1,6 @@
 package MenuAll;
 
+import GameAll.*;
 import UserAll.User;
 
 import java.io.BufferedReader;
@@ -36,6 +37,19 @@ public class LogIn extends Menu {
 
                 user.setName(fields[0]);
                 user.setPassword(fields[1]);
+                user.setMoney(Integer.parseInt(fields[2]));
+
+                if (fields.length-1 > 2)
+                {
+                    for (int j = 3; j < fields.length; j++)
+                    {
+                        Game game = new Game(String.valueOf(fields[j]));
+
+                        user.addGames(game);
+
+                    }
+                }
+
 
                 userList.addLast(user);
 
@@ -72,7 +86,7 @@ public class LogIn extends Menu {
 
             do {
                 System.out.print("User Name : ");
-                userNameInput = keyboard.nextLine();
+                user.setName(keyboard.nextLine());
 
                 if (userNameInput.equals("0")) {
                     user.setSelection(0);
@@ -80,7 +94,7 @@ public class LogIn extends Menu {
                 }
 
                 for (User loopUser : loadUser) {
-                    if (userNameInput.equals(loopUser.getName())) {
+                    if (user.getName().equals(loopUser.getName())) {
                         user = loopUser;
                         userNameInput = "Found";
 
@@ -88,7 +102,7 @@ public class LogIn extends Menu {
                     }
 
                     userNameInput = "Not Found";
-                    System.out.println("Not Found");
+//                    System.out.println("Not Found");
 
                 }
 
@@ -135,8 +149,13 @@ public class LogIn extends Menu {
         if (user.getSelection() == -1)
         {
             pass = false;
+
+            clearMenuList();
+
             return new User();
         }
+
+
 
         return user;
     }

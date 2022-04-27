@@ -13,7 +13,17 @@ public class User {
     private String name = "";
     private String password = "";
 
-    private  ArrayList<Game> games = null;
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    private int money = 0;
+
+    private  ArrayList<Game> games = new ArrayList<>();
 
     private int selection = -1;
 

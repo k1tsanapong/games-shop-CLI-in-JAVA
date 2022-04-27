@@ -12,29 +12,19 @@ import java.util.List;
 
 public class Shop extends Menu {
 
-
+    private String name;
     private  List<Game> games = loadGames();
 
     public Shop(String name) {
         super(name);
+        this.name = name;
     }
 
-    public void showGame()
+    public void showName(User user)
     {
 
-        for (int i = 0; i < games.size(); i++)
-        {
-
-            String prefix = (i+1) + "." + games.get(i).getName();
-            int suffix = games.get(i).getPrice();
-
-
-            System.out.printf("%-20s%5s%5s%n", prefix, suffix,"Baht");
-
-        }
-
-        System.out.println("0.Return");
-
+        System.out.printf("%-21s%s","--- " + name + " ---","Your Balance: ");
+        System.out.println(user.getMoney());
     }
 
     private List<Game> loadGames()
@@ -73,17 +63,46 @@ public class Shop extends Menu {
 
     }
 
+    public void showMenu()
+    {
+
+        for (int i = 0; i < games.size(); i++)
+        {
+
+            String prefix = (i+1) + "." + games.get(i).getName();
+            int suffix = games.get(i).getPrice();
+
+
+            System.out.printf("%-20s%5s%5s%n", prefix, suffix,"Baht");
+
+        }
+
+        System.out.println("0.Return");
+
+    }
+
+//    public void gameSelection
+
+
+
     @Override
     public User start(User user) {
 
-        showName();
+
+        showName(user);
         showMenu();
 
         user.setSelection(selection());
 
-        System.out.println(user.getSelection());
+        if (user.getSelection() == -1)
+        {
+            return user;
+        }
 
+        System.out.println(games.get(user.getSelection()).getPrice());
         return user;
 
+
     }
+
 }

@@ -138,6 +138,10 @@ public class Menu {
     public void addMenuList (Menu menu) {
         menuList.add(menu);
     }
+    public void clearMenuList()
+    {
+        menuList.clear();
+    }
 
 
     public User start(User user) {
