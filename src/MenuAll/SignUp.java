@@ -5,145 +5,94 @@ import UserAll.*;
 import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Objects;
 
-public class SignUp extends Menu{
+public class SignUp extends LogIn{
 
-    private static User newUser = new User();
+    private User userNow = null;
 
-    private static Deque<User> loadUser = loadUser();
 
     public SignUp(String name) {
         super(name);
     }
 
-    public static void writeUser()
-    {
-        try(BufferedWriter bW = new BufferedWriter(new FileWriter(new File("src/UserAll/user.txt"))))
 
+    private boolean checkUserName(User user) {
+
+        for (User each : loadUsers)
         {
-            for (User loopUser: loadUser)
+
+            if (Objects.equals(user.getName(), each.getName()))
             {
-                bW.write(loopUser.getName());
-                bW.write(',');
-                bW.write(loopUser.getPassword());
-                bW.newLine();
+//                System.out.println("Found");
+                return true;
             }
 
-            bW.write(newUser.getName());
-            bW.write(',');
-            bW.write(newUser.getPassword());
-            bW.newLine();
-
-
-
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error" + e.getMessage());
-        }
-    }
-
-    public static Deque<User> loadUser()
-    {
-        Deque<User> userList = new ArrayDeque<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/UserAll/user.txt"))))
-        {
-            String[] fields = null;
-            String line = null;
-
-            for (int i = 0 ; ((line = reader.readLine()) != null); i++) {
-                fields = line.split(",");
-
-                User user = new User();
-
-                user.setName(fields[0]);
-                user.setPassword(fields[1]);
-
-                userList.addLast(user);
-
-            }
-
-    }
-        catch (IOException e)
-        {
-            System.out.println("Error: " + e.getMessage());
         }
 
-
-        return userList;
-
+        return false;
     }
 
+    public User start(User user) {
 
-    public User start() {
+        userNow = user;
 
         showName();
 
-
-        boolean again_1 = false;
+        boolean again = false;
 
         do
         {
+
+            if (again == true)
+            {
+                System.out.println("Duplicate");
+            }
+            again = true;
+
+
             System.out.print("User Name : ");
-            newUser.setName(keyboard.next());
+            userNow.setName(keyboard.nextLine());
 
-            if (newUser.getName().equals("0"))
+            if ( Objects.equals(userNow.getName(), "0" ))
             {
-                newUser.setSelection(0);
-
-                return newUser;
+                return backToThePast(userNow);
             }
 
-            for (User loopUser : loadUser)
-            {
-                if (newUser.getName().equals(loopUser.getName()))
-                {
-                    newUser.setName("Duplicate");
-                    System.out.println("Duplicate");
-
-                    break;
-                }
-            }
+        } while ( checkUserName(userNow) == true );
 
 
-
-
-        }while (newUser.getName().equals("Duplicate"));
-
-
-        boolean again_2 = false;
+        again = false;
 
         do
         {
-            if (again_2 == true)
+            if (again == true)
             {
                 System.out.println("Not match");
             }
-
-            if (newUser.getPassword().equals("0"))
-            {
-                newUser.setSelection(0);
-
-                return newUser;
-            }
+            again = true;
 
             System.out.print("Password : ");
-            newUser.setPassword(keyboard.next());
+            userNow.setPassword(keyboard.nextLine());
 
-            again_2 = true;
+            if ( Objects.equals(userNow.getPassword(), "0" ))
+            {
+                return backToThePast(userNow);
+            }
+
 
             System.out.print("Confirm Password : ");
 
-        } while ( !newUser.getPassword().equals(keyboard.next()) );
+        } while ( userNow.getPassword().equals(keyboard.nextLine()) == false );
 
+
+
+        loadUsers.add(userNow);
 
         writeUser();
+
         System.out.println("Sign Up Suc");
-
-        newUser.setSelection(0);
-
-        return newUser;
+        return backToThePast(userNow);
 
     }
 }

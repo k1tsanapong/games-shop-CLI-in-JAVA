@@ -135,58 +135,6 @@ public class Menu {
 
     }
 
-
-
-
-
-
-    public static Deque<User> loadUser()
-    {
-        Deque<User> userList = new ArrayDeque<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/UserAll/user.txt"))))
-        {
-            String[] fields = null;
-            String line = null;
-
-            for (int i = 0 ; ((line = reader.readLine()) != null); i++) {
-                fields = line.split(",");
-
-                User user = new User();
-
-                user.setName(fields[0]);
-                user.setPassword(fields[1]);
-                user.setMoney(Integer.parseInt(fields[2]));
-
-                if (fields.length-1 > 2)
-                {
-                    for (int j = 3; j < fields.length; j++)
-                    {
-                        Game game = new Game(String.valueOf(fields[j]));
-
-                        user.addGames(game);
-
-                    }
-                }
-
-
-                userList.addLast(user);
-
-            }
-
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-
-        return userList;
-
-    }
-
-    public static Deque<User> loadUsers = loadUser();
-
     public List<Menu> getMenuList() {
         return menuList;
     }

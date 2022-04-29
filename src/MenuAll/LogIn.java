@@ -3,10 +3,7 @@ package MenuAll;
 import GameAll.*;
 import UserAll.User;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
@@ -23,9 +20,94 @@ public class LogIn extends Menu {
         super(name);
     }
 
+    public static Deque<User> loadUsers = loadUser();
+
+    public static Deque<User> loadUser()
+    {
+        Deque<User> userList = new ArrayDeque<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/UserAll/user.txt"))))
+        {
+            String[] fields = null;
+            String line = null;
+
+            for (int i = 0 ; ((line = reader.readLine()) != null); i++) {
+                fields = line.split(",");
+
+                User user = new User();
+
+                user.setName(fields[0]);
+                user.setPassword(fields[1]);
+                user.setMoney(Integer.parseInt(fields[2]));
+
+                if (fields.length-1 > 2)
+                {
+                    for (int j = 3; j < fields.length; j++)
+                    {
+                        Game game = new Game(String.valueOf(fields[j]));
+
+                        user.addGames(game);
+
+                    }
+                }
+
+
+                userList.addLast(user);
+
+            }
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+
+        return userList;
+
+    }
+
+    public static void writeUser()
+    {
+
+
+
+        try(BufferedWriter bW = new BufferedWriter(new FileWriter(new File("src/UserAll/user.txt"))))
+
+        {
+            for (User loopUser: loadUsers)
+            {
+                bW.write(loopUser.getName());
+                bW.write(',');
+                bW.write(loopUser.getPassword());
+                bW.write(',');
+                bW.write(String.valueOf(loopUser.getMoney()));
+
+                if (loopUser.getGames().isEmpty() == false)
+                {
+
+                    for (int j = 0; j < loopUser.getGames().size() ; j++)
+                    {
+                        bW.write(',');
+                        bW.write(loopUser.getGames().get(j).getName());
+
+                    }
+                }
+
+                bW.newLine();
+            }
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error" + e.getMessage());
+        }
+
+    }
+
     public boolean checkUserName()
     {
-        boolean found = false;
+
 
         for (User each : loadUsers)
         {
@@ -33,20 +115,17 @@ public class LogIn extends Menu {
             if (Objects.equals(userNow.getName(), each.getName()))
             {
 //                System.out.println("Found");
-                found = true;
                 return true;
             }
 
         }
 
-            System.out.println("Not Found");
             return false;
 
     }
 
     public boolean checkPassword()
     {
-        boolean found = false;
 
         for (User each : loadUsers)
         {
@@ -54,13 +133,11 @@ public class LogIn extends Menu {
             if (Objects.equals(userNow.getPassword(), each.getPassword()))
             {
 //                System.out.println("Found");
-                found = true;
                 return true;
             }
 
         }
 
-        System.out.println("Not Found");
         return false;
 
     }
@@ -92,10 +169,21 @@ public class LogIn extends Menu {
 
                 if ( Objects.equals(userNow.getName(), "0" ))
                 {
-                    backToThePast(userNow);
+                    return backToThePast(userNow);
                 }
 
-            } while ( checkUserName() == false );
+                else if ( checkUserName() == false )
+                {
+                System.out.println("Not Found");
+
+                }
+
+                else
+                {
+                    break;
+                }
+
+            } while ( true );
 
 
             do
@@ -105,10 +193,21 @@ public class LogIn extends Menu {
 
                 if ( Objects.equals(userNow.getPassword(), "0" ))
                 {
-                    backToThePast(userNow);
+                    return backToThePast(userNow);
                 }
 
-            } while ( checkPassword() == false );
+                else if (checkPassword() == false)
+                {
+                System.out.println("Wrong Password");
+
+                }
+
+                else
+                {
+                    break;
+                }
+
+            } while ( true );
 
 
         }
