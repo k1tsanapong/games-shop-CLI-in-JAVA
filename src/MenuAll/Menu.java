@@ -150,6 +150,7 @@ public class Menu {
 
     public User backToThePast(User user)
     {
+        clearMenuList();
         user.setSelection(-1);
         return user;
     }

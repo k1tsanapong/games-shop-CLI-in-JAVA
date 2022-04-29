@@ -3,7 +3,7 @@ package MenuAll;
 import GameAll.*;
 import UserAll.User;
 
-public class Library extends Menu{
+public class Library extends LogIn{
 
 
     public Library(String name) {

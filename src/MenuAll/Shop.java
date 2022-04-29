@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shop extends Menu {
+public class Shop extends LogIn {
 
     private String name;
     private  List<Game> games = loadGames();
@@ -57,8 +57,6 @@ public class Shop extends Menu {
             System.out.println("Error: " + e.getMessage());
         }
 
-
-
         return loadGames;
 
     }
@@ -94,12 +92,7 @@ public class Shop extends Menu {
 
         user.setSelection(selection());
 
-        if (user.getSelection() == -1)
-        {
-            return user;
-        }
-
-//        System.out.println(games.get(user.getSelection()).getPrice());
+        //        System.out.println(games.get(user.getSelection()).getPrice());
 
 
         return user;

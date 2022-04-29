@@ -39,16 +39,10 @@ public class SignUp extends LogIn{
 
         showName();
 
-        boolean again = false;
 
         do
         {
 
-            if (again == true)
-            {
-                System.out.println("Duplicate");
-            }
-            again = true;
 
 
             System.out.print("User Name : ");
@@ -59,18 +53,24 @@ public class SignUp extends LogIn{
                 return backToThePast(userNow);
             }
 
-        } while ( checkUserName(userNow) == true );
+            else if (checkUserName(userNow) == true )
+            {
+                System.out.println("Duplicate");
+            }
+
+            else
+            {
+                break;
+            }
 
 
-        again = false;
+        } while ( true );
+
+
+
 
         do
         {
-            if (again == true)
-            {
-                System.out.println("Not match");
-            }
-            again = true;
 
             System.out.print("Password : ");
             userNow.setPassword(keyboard.nextLine());
@@ -80,15 +80,23 @@ public class SignUp extends LogIn{
                 return backToThePast(userNow);
             }
 
-
             System.out.print("Confirm Password : ");
 
-        } while ( userNow.getPassword().equals(keyboard.nextLine()) == false );
+            if (userNow.getPassword().equals(keyboard.nextLine()) == false)
+            {
+                System.out.println("Not match");
+            }
 
+            else
+            {
+                break;
+            }
+
+
+        } while ( true );
 
 
         loadUsers.add(userNow);
-
         writeUser();
 
         System.out.println("Sign Up Suc");

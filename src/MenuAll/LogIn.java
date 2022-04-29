@@ -115,6 +115,7 @@ public class LogIn extends Menu {
             if (Objects.equals(userNow.getName(), each.getName()))
             {
 //                System.out.println("Found");
+                userNow = each;
                 return true;
             }
 
