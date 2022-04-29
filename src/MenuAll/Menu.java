@@ -18,7 +18,7 @@ public class Menu {
     private boolean pass = false;
 
     private List<Menu> menuList = new ArrayList<>();
-    Scanner keyboard = new Scanner(System.in);
+    static Scanner keyboard = new Scanner(System.in);
 
 
     public Menu(String name)
@@ -133,6 +133,76 @@ public class Menu {
         return select;
 
 
+    }
+
+    public static int selectionYesNO(String inPutMessage, String showError, int low, int high) {
+
+        int selection = -1;
+        boolean again = true;
+
+
+        while(again)
+        {
+
+            try
+            {
+
+                System.out.print(inPutMessage);
+                selection = Integer.parseInt(keyboard.nextLine());
+
+                selection = selection-1;
+
+                if (selection < low || selection > high)
+                    throw new NumberFormatException();
+
+                again = false;
+
+            }
+
+            catch (NumberFormatException e)
+            {
+                System.out.println(showError);
+
+            }
+
+        }
+
+        return selection;
+    }
+
+    public int tryNum() throws  ArithmeticException
+    {
+
+        int input = -1;
+        boolean again = true;
+
+
+        while(again)
+        {
+
+            try
+            {
+
+                System.out.print("Input : ");
+                input = Integer.parseInt(keyboard.nextLine());
+
+                again = false;
+
+            }
+
+            catch (ArithmeticException e)
+            {
+                System.out.println("it's over 9000 !!!");
+
+
+            }
+            catch(Exception e) {
+                System.out.println("Error : Only Number");
+            }
+
+        }
+
+        return input;
     }
 
     public List<Menu> getMenuList() {

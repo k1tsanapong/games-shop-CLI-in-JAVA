@@ -13,7 +13,9 @@ import java.util.List;
 public class Shop extends LogIn {
 
     private String name;
-    private  List<Game> games = loadGames();
+    private  List<Game> games = null;
+    private boolean pass = false;
+
 
     public Shop(String name) {
         super(name);
@@ -61,10 +63,19 @@ public class Shop extends LogIn {
 
     }
 
+    @Override
+    public void setUpMenuList() {
+
+        games = loadGames();
+        TopUp topUp = new  TopUp("Wallet");
+        addMenuList(topUp);
+
+    }
+
     public void showMenu()
     {
-
-        for (int i = 0; i < games.size(); i++)
+        int i = 0;
+        while (i < games.size())
         {
 
             String prefix = (i+1) + "." + games.get(i).getName();
@@ -73,7 +84,15 @@ public class Shop extends LogIn {
 
             System.out.printf("%-20s%5s%5s%n", prefix, suffix,"Baht");
 
+            i++;
         }
+
+        while (i < getMenuList().size())
+        {
+            System.out.println( (i+1) + "." + getMenuList().get(i).getName() );
+            i++;
+        }
+
 
         System.out.println("0.Return");
 
@@ -86,14 +105,19 @@ public class Shop extends LogIn {
     @Override
     public User start(User user) {
 
+        if (pass == false)
+        {
+            setUpMenuList();
+        }
+        pass = true;
+
 
         showName(user);
         showMenu();
-
         user.setSelection(selection());
 
-        //        System.out.println(games.get(user.getSelection()).getPrice());
 
+        //        System.out.println(games.get(user.getSelection()).getPrice());
 
         return user;
 

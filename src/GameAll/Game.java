@@ -59,75 +59,7 @@ public class Game extends LogIn {
 
     }
 
-    public int tryNum() throws  ArithmeticException
-    {
 
-        int input = -1;
-        boolean again = true;
-
-
-        while(again)
-        {
-
-            try
-            {
-
-                System.out.print("Input : ");
-                input = keyboard.nextInt();
-
-                again = false;
-
-            }
-
-            catch (NumberFormatException e)
-            {
-
-                System.out.println("Error : Only Number");
-
-            }
-            catch(ArithmeticException e) {
-                System.out.println("it's over 9000 !!!");
-            }
-
-        }
-
-        return input;
-    }
-
-    public static int selectionYesNO(String inPutMessage, String showError, int low, int hight) {
-
-        int selection = -1;
-        boolean again = true;
-
-
-        while(again)
-        {
-
-            try
-            {
-
-                System.out.print(inPutMessage);
-                selection = Integer.parseInt(keyboard.nextLine());
-
-                selection = selection-1;
-
-                if (selection < low || selection > hight)
-                    throw new NumberFormatException();
-
-                again = false;
-
-            }
-
-            catch (NumberFormatException e)
-            {
-                System.out.println(showError);
-
-            }
-
-        }
-
-        return selection;
-    }
 
     @Override
     public void showMenu() {
