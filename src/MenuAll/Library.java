@@ -31,12 +31,11 @@ public class Library extends LogIn{
 
         user.setSelection(selection());
 
-        if (user.getSelection() == -1)
+        if (user.getSelection() > -1)
         {
-            return user;
+            user.getGames().get(user.getSelection()).play();
         }
 
-        user.getGames().get(user.getSelection()).play();
         return user;
 
     }
