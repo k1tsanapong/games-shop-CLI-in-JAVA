@@ -48,6 +48,15 @@ public class Menu {
         System.out.println("0.Return");
     }
 
+    public void showMenuMain()
+    {
+
+        for (int i = 0; i < menuList.size(); i++)  {
+            System.out.println( (i+1) + "." + menuList.get(i).getName());
+        }
+        System.out.println("0.Exit");
+    }
+
     public String toString() {
 
         return getName();
@@ -247,7 +256,7 @@ public class Menu {
 
 
         showName();
-        showMenu();
+        showMenuMain();
 
         user.setSelection(selection());
 
