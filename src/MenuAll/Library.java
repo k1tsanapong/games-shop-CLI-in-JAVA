@@ -12,6 +12,10 @@ public class Library extends LogIn{
 
     public void showMenu(User user)
     {
+        if (user.getGames().size() == 0)
+        {
+            System.out.println("Have no game");
+        }
 
         for (int i = 0; i < user.getGames().size(); i++)
         {
