@@ -2,4 +2,5 @@ kim,5435,11000,GTA X,Cyberpunk 1999,Old World,Mario Car
 test,123,10000,Mario Car,GTA X
 fads,344,10000
 again,5435,10000,Mario Car
-kimer,5435,10000
+kimer,5435,10000,GTA X,Cyberpunk 1999
+fasdf,123,0

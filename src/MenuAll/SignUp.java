@@ -17,7 +17,7 @@ public class SignUp extends LogIn{
     }
 
 
-    private boolean checkUserName(User user) {
+    public boolean checkUserName(User user) {
 
         for (User each : loadUsers)
         {

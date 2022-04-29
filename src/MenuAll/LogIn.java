@@ -105,14 +105,14 @@ public class LogIn extends Menu {
 
     }
 
-    public boolean checkUserName()
+    public boolean checkUserName(User user)
     {
 
 
         for (User each : loadUsers)
         {
 
-            if (Objects.equals(userNow.getName(), each.getName()))
+            if (Objects.equals(user.getName(), each.getName()))
             {
 //                System.out.println("Found");
                 userNow = each;
@@ -125,21 +125,12 @@ public class LogIn extends Menu {
 
     }
 
-    public boolean checkPassword()
+    public boolean checkPassword(User user)
     {
 
-        for (User each : loadUsers)
-        {
 
-            if (Objects.equals(userNow.getPassword(), each.getPassword()))
-            {
-//                System.out.println("Found");
-                return true;
-            }
-
-        }
-
-        return false;
+        //                System.out.println("Found");
+        return Objects.equals(user.getPassword(), userNow.getPassword());
 
     }
 
@@ -153,9 +144,9 @@ public class LogIn extends Menu {
         addMenuList(library);
     }
 
-    public User start(User user)
+    public User start(User userIn)
     {
-        userNow = user;
+
 
         if (pass == false) {
 
@@ -166,14 +157,14 @@ public class LogIn extends Menu {
             do
             {
                 System.out.print("User Name : ");
-                userNow.setName(keyboard.nextLine());
+                userIn.setName(keyboard.nextLine());
 
-                if ( Objects.equals(userNow.getName(), "0" ))
+                if ( Objects.equals(userIn.getName(), "0" ))
                 {
-                    return backToThePast(userNow);
+                    return backToThePast(userIn);
                 }
 
-                else if ( checkUserName() == false )
+                else if ( checkUserName(userIn) == false )
                 {
                 System.out.println("Not Found");
 
@@ -190,14 +181,14 @@ public class LogIn extends Menu {
             do
             {
                 System.out.print("Password : ");
-                userNow.setPassword(keyboard.nextLine());
+                userIn.setPassword(keyboard.nextLine());
 
-                if ( Objects.equals(userNow.getPassword(), "0" ))
+                if ( Objects.equals(userIn.getPassword(), "0" ))
                 {
-                    return backToThePast(userNow);
+                    return backToThePast(userIn);
                 }
 
-                else if (checkPassword() == false)
+                else if (checkPassword(userIn) == false)
                 {
                 System.out.println("Wrong Password");
 
@@ -205,6 +196,7 @@ public class LogIn extends Menu {
 
                 else
                 {
+                    userIn = userNow;
                     break;
                 }
 
@@ -219,9 +211,9 @@ public class LogIn extends Menu {
         showMenu();
 
 
-        userNow.setSelection(selection());
+        userIn.setSelection(selection());
 
-        if (userNow.getSelection() == -1)
+        if (userIn.getSelection() == -1)
         {
             pass = false;
             clearMenuList();
@@ -230,7 +222,7 @@ public class LogIn extends Menu {
 
 
 
-        return userNow;
+        return userIn;
     }
 
 }

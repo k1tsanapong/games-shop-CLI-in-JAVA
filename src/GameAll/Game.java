@@ -125,6 +125,20 @@ public class Game extends LogIn {
                 user.setMoney(user.getMoney()-getPrice());
                 user.addGames(new Game(getName()));
                 writeUser();
+
+
+                System.out.print("                                            $$\\            $$\\                     $$\\ \n");
+                System.out.print("                                            $$ |           $$ |                    $$ |\n");
+                System.out.print(" $$$$$$$\\  $$$$$$\\  $$$$$$\\$$$$\\   $$$$$$\\  $$ | $$$$$$\\ $$$$$$\\    $$$$$$\\   $$$$$$$ |\n");
+                System.out.print("$$  _____|$$  __$$\\ $$  _$$  _$$\\ $$  __$$\\ $$ |$$  __$$\\\\_$$  _|  $$  __$$\\ $$  __$$ |\n");
+                System.out.print("$$ /      $$ /  $$ |$$ / $$ / $$ |$$ /  $$ |$$ |$$$$$$$$ | $$ |    $$$$$$$$ |$$ /  $$ |\n");
+                System.out.print("$$ |      $$ |  $$ |$$ | $$ | $$ |$$ |  $$ |$$ |$$   ____| $$ |$$\\ $$   ____|$$ |  $$ |\n");
+                System.out.print("\\$$$$$$$\\ \\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |$$ |\\$$$$$$$\\  \\$$$$  |\\$$$$$$$\\ \\$$$$$$$ |\n");
+                System.out.print(" \\_______| \\______/ \\__| \\__| \\__|$$  ____/ \\__| \\_______|  \\____/  \\_______| \\_______|\n");
+                System.out.print("                                  $$ |                                                 \n");
+                System.out.print("                                  $$ |                                                 \n");
+                System.out.print("                                  \\__|                                                 \n");
+                System.out.println();
             }
 
             else if (inPutBuy == 1)
