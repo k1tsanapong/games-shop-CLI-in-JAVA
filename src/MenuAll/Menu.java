@@ -1,24 +1,28 @@
 package MenuAll;
 
 import ExceptionAll.*;
+import GameAll.Game;
 import UserAll.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 
 public class Menu {
 
     private String name;
 
-    private static boolean pass = false;
+    private boolean pass = false;
 
     private List<Menu> menuList = new ArrayList<>();
     Scanner keyboard = new Scanner(System.in);
 
 
-    public Menu(String name) {
+    public Menu(String name)
+    {
         this.name = name;
     }
 
@@ -131,6 +135,58 @@ public class Menu {
 
     }
 
+
+
+
+
+
+    public static Deque<User> loadUser()
+    {
+        Deque<User> userList = new ArrayDeque<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/UserAll/user.txt"))))
+        {
+            String[] fields = null;
+            String line = null;
+
+            for (int i = 0 ; ((line = reader.readLine()) != null); i++) {
+                fields = line.split(",");
+
+                User user = new User();
+
+                user.setName(fields[0]);
+                user.setPassword(fields[1]);
+                user.setMoney(Integer.parseInt(fields[2]));
+
+                if (fields.length-1 > 2)
+                {
+                    for (int j = 3; j < fields.length; j++)
+                    {
+                        Game game = new Game(String.valueOf(fields[j]));
+
+                        user.addGames(game);
+
+                    }
+                }
+
+
+                userList.addLast(user);
+
+            }
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+
+        return userList;
+
+    }
+
+    public static Deque<User> loadUsers = loadUser();
+
     public List<Menu> getMenuList() {
         return menuList;
     }
@@ -144,19 +200,31 @@ public class Menu {
     }
 
 
+    public User backToThePast(User user)
+    {
+        user.setSelection(-1);
+        return user;
+    }
+
+    public void setUpMenuList() {
+
+        LogIn logIn = new LogIn("Log In");
+        SignUp signUp = new SignUp("Sign Up");
+
+        addMenuList(logIn);
+        addMenuList(signUp);
+
+    }
+
+
     public User start(User user) {
 
         if (pass == false)
         {
-            LogIn logIn = new LogIn("Log In");
-            SignUp signUp = new SignUp("Sign Up");
-
-            addMenuList(logIn);
-            addMenuList(signUp);
-
+            setUpMenuList();
         }
-        pass = true;
 
+        pass = true;
 
 
         showName();

@@ -79,7 +79,7 @@ public class SignUp extends Menu{
     public User start() {
 
         showName();
-        showMenu();
+
 
         boolean again_1 = false;
 
