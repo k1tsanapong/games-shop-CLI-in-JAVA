@@ -20,7 +20,7 @@ public class Game extends LogIn {
     private String name = "";
     private int price = 0;
 
-    Scanner keyboard = new Scanner(System.in);
+    static Scanner keyboard = new Scanner(System.in);
 
 
     public String getName() {
@@ -59,7 +59,7 @@ public class Game extends LogIn {
 
     }
 
-    public int inNum() throws IndexTooLowException, ArithmeticException
+    public int tryNum() throws  ArithmeticException
     {
 
         int input = -1;
@@ -68,19 +68,12 @@ public class Game extends LogIn {
 
         while(again)
         {
-            String selectionStr = "";
 
             try
             {
 
-
                 System.out.print("Input : ");
-                selectionStr = keyboard.nextLine();
-
-
-
-
-                input = getInputNum(selectionStr);
+                input = keyboard.nextInt();
 
                 again = false;
 
@@ -101,32 +94,40 @@ public class Game extends LogIn {
         return input;
     }
 
-    public int getInputNum(String selectionStr) throws IndexTooLowException, ArithmeticException
-    {
-        int select;
+    public static int selectionYesNO(String inPutMessage, String showError, int low, int hight) {
 
-        try {
-            select = Integer.parseInt(selectionStr);
-            select = select - 1;
+        int selection = -1;
+        boolean again = true;
 
-            if (select < -1) {
-                throw new IndexTooLowException();
+
+        while(again)
+        {
+
+            try
+            {
+
+                System.out.print(inPutMessage);
+                selection = Integer.parseInt(keyboard.nextLine());
+
+                selection = selection-1;
+
+                if (selection < low || selection > hight)
+                    throw new NumberFormatException();
+
+                again = false;
+
             }
 
-        } catch (NumberFormatException e) {
+            catch (NumberFormatException e)
+            {
+                System.out.println(showError);
 
-            throw new NumberFormatException();
+            }
+
         }
-        catch(ArithmeticException e) {
-            throw new ArithmeticException();
-        }
 
-        return select;
-
-
+        return selection;
     }
-
-
 
     @Override
     public void showMenu() {
@@ -159,78 +160,58 @@ public class Game extends LogIn {
 
         if (doesUserHas(user))
         {
-            System.out.println("lol you have it");
-            user.setSelection(-1);
-            return user;
+            System.out.println("You have it already.");
+            return backToThePast(user);
 
         }
 
         System.out.println("Would you like to buy " + getName() + "for " + getPrice() +" baht?");
         System.out.println("1.Yes   2.No");
 
-        String inPutBuy = keyboard.nextLine();
+        int inPutBuy = selectionYesNO("Input : ","Select only 1-2",0,1);
 
 
-        if (Objects.equals(inPutBuy, "1"))
+        if (inPutBuy == 0)
         {
+
             if (user.getMoney()-getPrice() < 0)
             {
                 System.out.println("You don't have enough money.");
-                user.setSelection(-1);
-                return user;
+                return backToThePast(user);
             }
 
             System.out.println("You have purchased " + getName()
                     + "\t Your remaining balance : " + ( user.getMoney()-getPrice() ) );
 
             System.out.println("Confirm purchase?");
+            System.out.println("1.Yes   2.No");
 
-            inPutBuy = keyboard.nextLine();
+            inPutBuy = selectionYesNO("Input : ","Select only 1-2",0,1);
 
-            if (Objects.equals(inPutBuy, "1"))
+            if (inPutBuy == 0)
             {
                 user.setMoney(user.getMoney()-getPrice());
                 user.addGames(new Game(getName()));
                 writeUser();
             }
 
-            else if (Objects.equals(inPutBuy, "2"))
+            else if (inPutBuy == 1)
             {
             System.out.println("Purchase Failed.");
 
-            user.setSelection(-1);
-            return user;
+                return backToThePast(user);
             }
-
-            else
-            {
-            System.out.println("Select only 1-2");
-            user.setSelection(-1);
-            return user;
-            }
-
-
 
         }
 
-        else if (Objects.equals(inPutBuy, "2"))
+        else if (inPutBuy == 1)
         {
             System.out.println("Purchase Failed.");
 
-            user.setSelection(-1);
-            return user;
+            return backToThePast(user);
         }
 
-        else {
-
-                System.out.println("Select only 1-2");
-                user.setSelection(-1);
-                return user;
-
-        }
-
-        user.setSelection(-1);
-        return user;
+        return backToThePast(user);
 
     }
 
