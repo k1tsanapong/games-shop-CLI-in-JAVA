@@ -55,7 +55,9 @@ public class Game extends LogIn {
         System.out.println("  \\___ \\| __/ _` | '__| __| | | |_ |/ _` | '_ ` _ \\ / _ \\");
         System.out.println("  ____) | || (_| | |  | |_  | |__| | (_| | | | | | |  __/");
         System.out.println(" |_____/ \\__\\__,_|_|   \\__|  \\_____|\\__,_|_| |_| |_|\\___|");
+        keyboard.nextLine();
         System.exit(0);
+
 
     }
 

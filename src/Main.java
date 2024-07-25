@@ -12,15 +12,8 @@ public class Main {
         User user = new User();
 
         Deque<Menu> menuList = new ArrayDeque<>();
-
         Menu menu = new Menu("Menu Main");
-
-
-
         menuList.addFirst(menu);
-
-
-
 
         while (menuList.isEmpty() == false)
         {
@@ -39,44 +32,6 @@ public class Main {
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        menu.addMenuList(shop);
-//        menu.addMenuList(library);
-
-
-
-//        signUp.newUserName();
-
-//        library.showName();
-//        library.showGame();
-//        library.playTest();
-
-//        shop.showName();
-//        shop.showGame();
-
-
-
 
 
     }
