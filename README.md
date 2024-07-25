@@ -1,3 +1,2 @@
 # Deploy
-
-https://java-ttyd-app.onrender.com
+https://games-shop-cli-in-java.onrender.com/
