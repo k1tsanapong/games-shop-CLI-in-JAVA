@@ -2,14 +2,10 @@ services:
   - type: web
     name: java-ttyd-app
     env: docker
-    plan: starter
+    plan: free
     dockerfilePath: ./Dockerfile
     buildCommand: ""
     startCommand: ""
     envVars:
       - key: PORT
         value: "8080"
-    # disk:
-    #   sizeGB: 1
-    #   mountPath: /persistent
-    #   name: persistent-disk
