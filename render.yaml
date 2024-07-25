@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: java-ttyd-app
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: PORT
+        value: "8080"
+    disk:
+      sizeGB: 1
