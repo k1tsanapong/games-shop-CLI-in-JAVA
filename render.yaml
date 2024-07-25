@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: java-ttyd-app
+    name: games-shop-CLI-in-java
     env: docker
     plan: free
+    region: singapore
     dockerfilePath: ./Dockerfile
     buildCommand: ""
     startCommand: ""
