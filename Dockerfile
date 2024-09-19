@@ -7,23 +7,22 @@ RUN apt-get update && \
     apt-get install -y build-essential cmake git libjson-c-dev libwebsockets-dev openjdk-11-jdk && \
     rm -rf /var/lib/apt/lists/*
 
+# Create the app directory
+RUN mkdir -p /usr/src/app
+
+# Copy the project files to the app directory
+COPY . /usr/src/app 
+
+# Set the working directory
+WORKDIR /usr/src/app
+
 # Clone the ttyd repository and build it
-RUN git clone https://github.com/tsl0922/ttyd.git && \
-    cd ttyd && \
+RUN cd ttyd && \
     mkdir build && \
     cd build && \
     cmake .. && \
     make && \
     make install
-
-# Create the app directory
-RUN mkdir -p /usr/src/app
-
-# Copy the project files to the app directory
-COPY . /usr/src/app
-
-# Set the working directory
-WORKDIR /usr/src/app
 
 # Compile the Java application
 RUN javac $(find src -name "*.java")
