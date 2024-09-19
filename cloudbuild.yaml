@@ -30,3 +30,6 @@ substitutions:
   _REPO: 'games-shop-cli-in-java'
   _REGION: 'us-central1'
   _PORT: '8080'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
