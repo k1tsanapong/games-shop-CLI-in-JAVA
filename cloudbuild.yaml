@@ -15,7 +15,7 @@ steps:
    - '--image'
    - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/${_REPO}:$COMMIT_SHA'
    - '--region'
-   - '${_REGION}'
+   - '${_REGION_CLOUD_RUN}'
    - '--allow-unauthenticated'
    - '--platform'
    - 'managed'
@@ -29,6 +29,7 @@ substitutions:
   _REGISTRY: 'docker-repo'
   _REPO: 'games-shop-cli-in-java'
   _REGION: 'us-central1'
+  _REGION_CLOUD_RUN: 'asia-southeast1'
   _PORT: '8080'
 
 options:
