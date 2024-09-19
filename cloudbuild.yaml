@@ -1,0 +1,29 @@
+steps:
+ # Build the container image
+ - name: 'gcr.io/cloud-builders/docker'args: [ 'build', '-t', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/${_REPO}:$COMMIT_SHA', '.' ]
+ # Push the container image to Container Registry
+ - name: 'gcr.io/cloud-builders/docker'args: ['push', '${_REGION}-docker.pkg.dev${_PROJECT_ID}/${_REGISTRY}/${_REPO}:$COMMIT_SHA']
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/cloud-builders/gcloud'entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - '${_REPO}'
+   - '--image'
+   - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/${_REPO}:$COMMIT_SHA'
+   - '--region'
+   - '${_REGION}'
+   - '--allow-unauthenticated'
+   - '--platform'
+   - 'managed'
+   - '--port'
+   - '${_PORT}'
+images:
+ - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/${_REPO}'
+ 
+substitutions:
+  _PROJECT_ID: 'kim-s-resume'
+  _REGISTRY: 'docker-repo'
+  _REPO: 'games-shop-cli-in-java'
+  _REGION: 'us-central1'
+  _PORT: '8080'
