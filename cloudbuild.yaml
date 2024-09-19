@@ -21,6 +21,10 @@ steps:
    - 'managed'
    - '--port'
    - '${_PORT}'
+   - '--max-instances'
+   - '1'
+   - '--memory'
+   - '128Mi'
 images:
  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/${_REPO}'
  
